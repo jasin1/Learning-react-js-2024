@@ -1,0 +1,19 @@
+.colors-wrapper{
+  max-width: 536px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.colors-view{
+  width: 100%;
+  background: red;
+  height: 324px;
+
+}
+
+.btns-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
