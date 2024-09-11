@@ -7,7 +7,7 @@
 
 .colors-view{
   width: 100%;
-  background: red;
+  /* background: red; */
   height: 324px;
 
 }
@@ -16,4 +16,17 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.answer, h2{
+  color: green;
+
+}
+
+.right{
+  color: green;
+}
+
+.wrong{
+  color: red;
 }
