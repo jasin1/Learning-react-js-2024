@@ -4,8 +4,9 @@ import './colors.css';
 function Colors(){
   const [color, setColor] = useState("");
   const [answers, setAnswers] = useState([]);
-  const [isWrongSelect, setIsWrongSelect] = useState(false);
+  const [isWrongSelect, setIsWrongSelect] = useState(null);
 
+  
   
   function getRandomHexColor(){
     const hexChars = '0123456789ABCDEF';
@@ -17,8 +18,8 @@ function Colors(){
     }
     return color;
   }
-
-  useEffect(() =>{
+  
+  const pickColor = () =>{
     const randomColor = getRandomHexColor();
     setColor(randomColor);
     setAnswers([randomColor, getRandomHexColor(), getRandomHexColor()].sort(
@@ -26,16 +27,22 @@ function Colors(){
     ));
 
     console.log("Random color is: ", randomColor);
-   
+
+  }
+  
+
+  useEffect(() =>{
+    pickColor();
   },[])
 
   function handleAnswerClicked(answer){
     if(answer === color){
         console.log("right color guessed");
-        setIsWrongSelect(false);
+        setIsWrongSelect(true);
+        pickColor();
     }else{
       console.log("wrong color guessed");
-      setIsWrongSelect(true);
+      setIsWrongSelect(false);
 
     }
 
@@ -47,13 +54,14 @@ function Colors(){
       <div className="colors-wrapper">
         <div className="colors-view" style={{background: color}}></div>
         <div className="btns-wrapper">
-          {answers.map((answer) =>(
-            <button onClick={()=> handleAnswerClicked(answer)} key={answer}>{answer}</button>
+          {answers.map((answer, index) =>(
+            <button onClick={()=> handleAnswerClicked(answer)} key={`${answer}-${index}`}>{answer}</button>
           ))}
 
         </div>
         <div className="answer">
-          {isWrongSelect && <h2 className='wrong'>Wrong!</h2>}
+          {isWrongSelect === false && <h2 className='wrong'>Wrong!</h2>}
+          {isWrongSelect === true && <h2 className='right'>Correct!</h2>}
         </div>
 
       </div>
