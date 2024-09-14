@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './colors.css';
+import Button from '../../components/Button/Button';
 
 function Colors(){
   const [color, setColor] = useState("");
@@ -19,7 +20,7 @@ function Colors(){
     return color;
   }
   
-  const pickColor = () =>{
+  const pickColor = useCallback( () =>{
     const randomColor = getRandomHexColor();
     setColor(randomColor);
     setAnswers([randomColor, getRandomHexColor(), getRandomHexColor()].sort(
@@ -28,12 +29,12 @@ function Colors(){
 
     console.log("Random color is: ", randomColor);
 
-  }
+  }, []);
   
 
   useEffect(() =>{
     pickColor();
-  },[])
+  },[pickColor]);
 
   function handleAnswerClicked(answer){
     if(answer === color){
