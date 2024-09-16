@@ -56,7 +56,7 @@ function Colors(){
         <div className="colors-view" style={{background: color}}></div>
         <div className="btns-wrapper">
           {answers.map((answer, index) =>(
-            <button onClick={()=> handleAnswerClicked(answer)} key={`${answer}-${index}`}>{answer}</button>
+            <Button onClick={()=> handleAnswerClicked(answer)} key={`${answer}-${index}`} text={answer}></Button>
           ))}
 
         </div>
@@ -64,6 +64,7 @@ function Colors(){
           {isWrongSelect === false && <h2 className='wrong'>Wrong!</h2>}
           {isWrongSelect === true && <h2 className='right'>Correct!</h2>}
         </div>
+        {/* <Button text='Test'></Button> */}
 
       </div>
     </main>
